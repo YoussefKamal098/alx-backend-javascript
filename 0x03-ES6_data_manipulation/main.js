@@ -1,7 +1,15 @@
-import cleanSet from "./8-clean_set.js";
+import { queryAPI, weakMap } from "./100-weak.js";
 
-console.log(cleanSet(new Set(['bonjovi', 'bonaparte', 'bonappetit', 'banana']), 'bon'));
-console.log(cleanSet(new Set(['bonjovi', 'bonaparte', 'bonappetit', 'banana']), ''));
-console.log(cleanSet(new Set(['id-test', 'id-chicken', 'id-user',,'id-id-']), 'id-'));
+const endpoint = { protocol: 'http', name: 'getUsers' };
+weakMap.get(endpoint);
 
-console.log('test-chicken-user-id-');
+queryAPI(endpoint);
+console.log(weakMap.get(endpoint));
+
+queryAPI(endpoint);
+console.log(weakMap.get(endpoint));
+
+queryAPI(endpoint);
+queryAPI(endpoint);
+queryAPI(endpoint);
+queryAPI(endpoint);

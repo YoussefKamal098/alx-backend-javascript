@@ -15,7 +15,7 @@ function cleanSet(mySet, startString) {
   const result = [];
   for (const value of mySet) {
     if (value.startsWith(startString)) {
-      result.push(value.substring(startString.length));
+      result.push(value.slice(startString.length));
     }
   }
 

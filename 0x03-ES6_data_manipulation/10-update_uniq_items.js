@@ -10,17 +10,11 @@ function updateUniqueItems(itemsMap) {
     throw new Error('Cannot process');
   }
 
-  // for (const [item, quantity] of itemsMap) {
-  //     if (quantity === 1) {
-  //         itemsMap.set(item, 100);
-  //     }
-  // }
-
-  Object.entries(itemsMap).forEach(([item, quantity]) => {
-    if (quantity === 1) {
-      itemsMap.set(item, 100);
-    }
-  });
+  for (const [item, quantity] of itemsMap) {
+      if (quantity === 1) {
+          itemsMap.set(item, 100);
+      }
+  }
 
   return itemsMap;
 }

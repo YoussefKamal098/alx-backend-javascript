@@ -1,25 +1,25 @@
 /**
- * Returns a string of all set values that start with a specific string.
- *
- * @param {Set} mySet - The Set containing values to check.
- * @param {string} startString - The string that values should start with.
- * @returns {string} A string of all the values in the Set that start with startString,
- *                  concatenated and separated by a hyphen. If startString is empty,
- *                  an empty string is returned.
+ * Joins a set of strings with a dash after stripping the strings of
+ * a leading sub string.
+ * @param {Set<String>} set - A collection of strings.
+ * @param {String} startString - The string to strip from the beginning
+ * of each item in the set.
+ * @author Bezaleel Olakunori <https://github.com/B3zaleel>
+ * @returns {String}
  */
-function cleanSet(mySet, startString) {
-  if (typeof startString !== 'string' || startString === '') {
+export default function cleanSet(set, startString) {
+  const parts = [];
+  if (!set || !startString || !(set instanceof Set) || typeof startString !== 'string') {
     return '';
   }
+  for (const value of set.values()) {
+    if (typeof value === 'string' && value.startsWith(startString)) {
+      const valueSubStr = value.substring(startString.length);
 
-  const result = [];
-  for (const value of mySet) {
-    if (value.startsWith(startString)) {
-      result.push(value.slice(startString.length));
+      if (valueSubStr && valueSubStr !== value) {
+        parts.push(valueSubStr);
+      }
     }
   }
-
-  return result.join('-');
+  return parts.join('-');
 }
-
-export default cleanSet;

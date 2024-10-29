@@ -11,9 +11,9 @@ function updateUniqueItems(itemsMap) {
   }
 
   for (const [item, quantity] of itemsMap) {
-      if (quantity === 1) {
-          itemsMap.set(item, 100);
-      }
+    if (quantity === 1) {
+      itemsMap.set(item, 100);
+    }
   }
 
   return itemsMap;

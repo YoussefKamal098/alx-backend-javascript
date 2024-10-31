@@ -14,4 +14,4 @@ function taskNext() {
   return combination;
 }
 
-export {taskFirst, getLast, taskNext}
+export { taskFirst, getLast, taskNext };

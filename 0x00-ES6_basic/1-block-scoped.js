@@ -20,7 +20,9 @@ function taskBlock(trueOrFalse) {
   const task2 = true; // Default value for task2
 
   if (trueOrFalse) {
+    // eslint-disable-next-line no-unused-vars
     const task = true; // Redefining task within the block scope
+    // eslint-disable-next-line no-unused-vars
     const task2 = false; // Redefining task2 within the block scope
   }
 

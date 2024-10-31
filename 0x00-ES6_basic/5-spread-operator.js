@@ -15,7 +15,7 @@
  * console.log(result); // Output: [1, 2, 3, 4, 'Hello']
  */
 function concatArrays(array1, array2, string) {
-  return [...array1, ...array2, string];
+  return [...array1, ...array2, ...string];
 }
 
 // Exporting the function at the end of the file

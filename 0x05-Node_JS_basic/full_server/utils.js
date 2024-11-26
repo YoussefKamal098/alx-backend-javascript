@@ -3,7 +3,8 @@ const fs = require('fs').promises;
 /**
  * Parses the CSV data to organize student records by field.
  * @param {String} data The CSV data as a string.
- * @returns {Object} An object where each key is a field, and the value is an array of students in that field.
+ * @returns {Object} An object where each key is a field,
+ *  and the value is an array of students in that field.
  */
 const parseStudentData = (data) => {
   const fileLines = data.trim().split('\n');
@@ -21,7 +22,7 @@ const parseStudentData = (data) => {
     }
 
     const studentEntries = studentPropNames.map((propName, idx) => [
-      propName, studentPropValues[idx]
+      propName, studentPropValues[idx],
     ]);
 
     studentGroups[field].push(Object.fromEntries(studentEntries));
@@ -48,7 +49,6 @@ const readDatabase = async (dataPath) => {
     throw new Error('Cannot load the database');
   }
 };
-
 
 export default readDatabase;
 module.exports = readDatabase;

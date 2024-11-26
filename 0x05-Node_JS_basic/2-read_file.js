@@ -65,10 +65,11 @@ const logStudentCounts = (studentGroups) => {
 };
 
 // Main function to count students, combining all the smaller functions
-const countStudents = async (dataPath) => {
+const countStudents = (dataPath) => {
   try {
-    await validateFile(dataPath);
-    const fileLines = await readFileLines(dataPath);
+    validateFile(dataPath);
+
+    const fileLines = readFileLines(dataPath);
     const { studentGroups } = parseStudentData(fileLines);
 
     const totalStudents = calculateTotalStudents(studentGroups);

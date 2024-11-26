@@ -82,7 +82,7 @@ const countStudents = (dataPath) => {
     const studentGroups = groupStudentsByField(fileLines);
     logStudentGroups(studentGroups);
   } catch (err) {
-    console.error(err.message);
+    throw new Error(err.message);
   }
 };
 

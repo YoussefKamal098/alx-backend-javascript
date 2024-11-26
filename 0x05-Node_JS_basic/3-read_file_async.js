@@ -52,8 +52,8 @@ const parseStudentData = (fileLines) => {
 
 // Function to calculate total number of students
 const calculateTotalStudents = (studentGroups) => Object.values(studentGroups).reduce(
-    (total, group) => total + group.length,
-    0,
+  (total, group) => total + group.length,
+  0,
 );
 
 // Function to log the student counts and names

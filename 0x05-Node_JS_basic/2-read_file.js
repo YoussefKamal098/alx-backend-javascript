@@ -1,11 +1,11 @@
-const fs = require('fs').promises;
+const fs = require('fs');
 
 // Function to validate if the file exists and is a regular file
-const validateFile = async (dataPath) => {
+const validateFile = (dataPath) => {
   let fileStats;
 
   try {
-    fileStats = await fs.stat(dataPath);
+    fileStats = fs.statSync(dataPath);
   } catch (error) {
     throw new Error('Cannot load the database');
   }
@@ -16,10 +16,10 @@ const validateFile = async (dataPath) => {
 };
 
 // Function to read and parse the CSV file
-const readFileLines = async (dataPath) => {
+const readFileLines = (dataPath) => {
   try {
-    const fileContent = await fs.readFile(dataPath, 'utf-8');
-    return fileContent.toString('utf-8').trim().split('\n');
+    const fileContent = fs.readFileSync(dataPath, 'utf-8');
+    return fileContent.trim().split('\n');
   } catch (error) {
     throw new Error('Cannot load the database');
   }

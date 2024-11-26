@@ -5,7 +5,6 @@ const app = express();
 const PORT = 1245;
 const DB_FILE = process.argv.length > 2 ? process.argv[2] : '';
 
-
 // Function to validate if the file exists and is a regular file
 const validateFile = async (dataPath) => {
   let fileStats;
@@ -58,8 +57,8 @@ const parseStudentData = (fileLines) => {
 
 // Function to calculate total number of students
 const calculateTotalStudents = (studentGroups) => Object.values(studentGroups).reduce(
-    (total, group) => total + group.length,
-    0,
+  (total, group) => total + group.length,
+  0,
 );
 
 // Function to format the student counts and names
@@ -90,7 +89,6 @@ const countStudents = async (dataPath) => {
   }
 };
 
-
 // Route handler for the root path
 app.get('/', (_, res) => {
   res.send('Hello Holberton School!');
@@ -109,9 +107,7 @@ app.get('/students', async (_, res) => {
 
   const responseText = responseParts.join('\n');
   res.status(200).send(responseText); // Send the response as text
-
 });
-
 
 app.listen(PORT, () => {
   console.log(`Server listening on PORT ${PORT}`);

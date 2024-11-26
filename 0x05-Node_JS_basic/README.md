@@ -1,6 +1,39 @@
 # NodeJS Basics
+This project contains tasks for learning to the basics of NodeJS and Express framework.
 
-This project contains tasks for learning to the basics of NodeJS.
+## **Resources**
+
+Read or watch the following materials to learn more about the concepts used in this project:
+
+- **Node.js Getting Started**: [Official Node.js Documentation](https://nodejs.org/en/docs/guides/)
+- **Process API**: [Node.js Process API Documentation](https://nodejs.org/dist/latest-v14.x/docs/api/process.html)
+- **Child Process**: [Node.js Child Process Documentation](https://nodejs.org/dist/latest-v14.x/docs/api/child_process.html)
+- **Express Getting Started**: [Express.js Documentation](https://expressjs.com/en/starter/installing.html)
+- **Mocha Documentation**: [Mocha Testing Framework](https://mochajs.org/)
+- **Nodemon Documentation**: [Nodemon Documentation](https://nodemon.io/)
+
+## **Learning Objectives**
+
+By the end of this project, you should be able to:
+
+- Run JavaScript code using Node.js.
+- Use Node.js built-in modules.
+- Read files using Node.js' `fs` module.
+- Access command line arguments and environment variables using `process`.
+- Create a small HTTP server using Node.js' `http` module.
+- Create a small HTTP server using Express.js.
+- Create advanced routes with Express.js.
+- Use ES6 features in Node.js with Babel.
+- Use Nodemon to develop faster.
+
+## **Requirements**
+
+- **Allowed Editors**: vi, vim, emacs, Visual Studio Code.
+- **Tested on**: Ubuntu 18.04 LTS, Node.js version 12.x.x.
+- **File Extensions**: All JavaScript files should have the `.js` extension.
+- **Code Formatting**: Your code should follow ESLint guidelines and pass all tests.
+- **Tests**: Your code will be tested using Jest. To run tests, use the command `npm run test`.
+- **Full Test**: To verify the entire project, run `npm run full-test`.
 
 ## Tasks To Complete
 

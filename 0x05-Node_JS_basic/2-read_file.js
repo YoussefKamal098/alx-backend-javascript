@@ -1,37 +1,45 @@
 const fs = require('fs');
 
-// Function to validate if the file exists and is a regular file
-const validateFile = (dataPath) => {
-  let fileStats;
+/**
+ * Validates the file path and checks if it exists and is a file.
+ * @param {String} dataPath The path to the CSV data file.
+ * @throws {Error} If the file path is invalid or does not point to a file.
+ */
+const validateFilePath = (dataPath) => {
+  let stats;
 
   try {
-    fileStats = fs.statSync(dataPath);
-  } catch (error) {
+    stats = fs.statSync(dataPath);
+  } catch (err) {
     throw new Error('Cannot load the database');
   }
 
-  if (!fileStats.isFile()) {
+  if (!stats.isFile()) {
     throw new Error('Cannot load the database');
   }
 };
 
-// Function to read and parse the CSV file
-const readFileLines = (dataPath) => {
-  try {
-    const fileContent = fs.readFileSync(dataPath, 'utf-8');
-    return fileContent.trim().split('\n');
-  } catch (error) {
-    throw new Error('Cannot load the database');
-  }
+/**
+ * Parses the CSV file into a structured object.
+ * @param {String} dataPath The path to the CSV data file.
+ * @returns {Array} Parsed lines from the CSV file.
+ */
+const parseCSV = (dataPath) => {
+  const fileContent = fs.readFileSync(dataPath, 'utf-8');
+  return fileContent.trim().split('\n');
 };
 
-// Function to parse student data from CSV lines
-const parseStudentData = (fileLines) => {
+/**
+ * Groups students by their field and formats the result.
+ * @param {Array} fileLines The lines from the CSV file.
+ * @returns {Object} A grouped object of students by field.
+ */
+const groupStudentsByField = (fileLines) => {
   const studentGroups = {};
   const dbFieldNames = fileLines[0].split(',');
   const studentPropNames = dbFieldNames.slice(0, dbFieldNames.length - 1);
 
-  fileLines.slice(1).forEach((line) => {
+  for (const line of fileLines.slice(1)) {
     const studentRecord = line.split(',');
     const studentPropValues = studentRecord.slice(0, studentRecord.length - 1);
     const field = studentRecord[studentRecord.length - 1];
@@ -40,44 +48,41 @@ const parseStudentData = (fileLines) => {
       studentGroups[field] = [];
     }
 
-    const studentEntries = studentPropNames.map((propName, idx) => [
-      propName,
-      studentPropValues[idx],
-    ]);
+    const studentEntries = studentPropNames
+      .map((propName, idx) => [propName, studentPropValues[idx]]);
     studentGroups[field].push(Object.fromEntries(studentEntries));
-  });
-
-  return { studentGroups, studentPropNames };
+  }
+  return studentGroups;
 };
 
-// Function to calculate total number of students
-const calculateTotalStudents = (studentGroups) => Object.values(studentGroups).reduce(
-  (total, group) => total + group.length,
-  0,
-);
+/**
+ * Logs the student count and groups in a readable format.
+ * @param {Object} studentGroups The grouped students by field.
+ */
+const logStudentGroups = (studentGroups) => {
+  const totalStudents = Object.values(studentGroups)
+    .reduce((total, group) => total + group.length, 0);
 
-// Function to log the student counts and names
-const logStudentCounts = (studentGroups) => {
+  console.log(`Number of students: ${totalStudents}`);
+
   for (const [field, group] of Object.entries(studentGroups)) {
     const studentNames = group.map((student) => student.firstname).join(', ');
     console.log(`Number of students in ${field}: ${group.length}. List: ${studentNames}`);
   }
 };
 
-// Main function to count students, combining all the smaller functions
+/**
+ * Counts the students in a CSV data file.
+ * @param {String} dataPath The path to the CSV data file.
+ */
 const countStudents = (dataPath) => {
   try {
-    validateFile(dataPath);
-
-    const fileLines = readFileLines(dataPath);
-    const { studentGroups } = parseStudentData(fileLines);
-
-    const totalStudents = calculateTotalStudents(studentGroups);
-    console.log(`Number of students: ${totalStudents}`);
-
-    logStudentCounts(studentGroups);
-  } catch (error) {
-    console.error(error.message);
+    validateFilePath(dataPath);
+    const fileLines = parseCSV(dataPath);
+    const studentGroups = groupStudentsByField(fileLines);
+    logStudentGroups(studentGroups);
+  } catch (err) {
+    console.error(err.message);
   }
 };
 

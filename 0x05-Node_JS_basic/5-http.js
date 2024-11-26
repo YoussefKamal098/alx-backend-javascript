@@ -6,7 +6,6 @@ const HOST = 'localhost';
 const app = http.createServer();
 const DB_FILE = process.argv.length > 2 ? process.argv[2] : '';
 
-
 // Function to validate if the file exists and is a regular file
 const validateFile = async (dataPath) => {
   let fileStats;
@@ -59,16 +58,18 @@ const parseStudentData = (fileLines) => {
 
 // Function to calculate total number of students
 const calculateTotalStudents = (studentGroups) => Object.values(studentGroups).reduce(
-    (total, group) => total + group.length,
-    0,
+  (total, group) => total + group.length,
+  0,
 );
 
-// Function to log the student counts and names
-const logStudentCounts = (studentGroups) => {
+// Function to format the student counts and names
+const formatStudentCounts = (studentGroups) => {
+  const result = [];
   for (const [field, group] of Object.entries(studentGroups)) {
     const studentNames = group.map((student) => student.firstname).join(', ');
-    console.log(`Number of students in ${field}: ${group.length}. List: ${studentNames}`);
+    result.push(`Number of students in ${field}: ${group.length}. List: ${studentNames}`);
   }
+  return result.join('\n');
 };
 
 // Main function to count students, combining all the smaller functions
@@ -79,14 +80,15 @@ const countStudents = async (dataPath) => {
     const { studentGroups } = parseStudentData(fileLines);
 
     const totalStudents = calculateTotalStudents(studentGroups);
-    console.log(`Number of students: ${totalStudents}`);
+    const totalStudentsMessage = `Number of students: ${totalStudents}`;
 
-    logStudentCounts(studentGroups);
+    const studentCountsMessage = formatStudentCounts(studentGroups);
+
+    return `${totalStudentsMessage}\n${studentCountsMessage}`;
   } catch (error) {
     throw new Error(error.message);
   }
 };
-
 
 // Helper function to set headers and send response
 const sendResponse = (res, statusCode, responseText) => {
@@ -125,14 +127,13 @@ const SERVER_ROUTE_HANDLERS = [
 // Main request handler
 app.on('request', (req, res) => {
   const routeHandler = SERVER_ROUTE_HANDLERS.find(
-      (handler) => handler.route === req.url
+    (handler) => handler.route === req.url,
   );
 
   if (routeHandler) {
     routeHandler.handler(req, res);
   }
 });
-
 
 app.listen(PORT, HOST, () => {
   process.stdout.write(`Server listening at -> http://${HOST}:${PORT}\n`);

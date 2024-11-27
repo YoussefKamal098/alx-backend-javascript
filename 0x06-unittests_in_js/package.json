@@ -1,13 +1,11 @@
 {
-  "name": "node_js_basics",
+  "name": "unittests_in_js",
   "version": "1.0.0",
-  "description": "A simple project for learning the basics of Node.js for server-side apps.",
   "scripts": {
     "lint": "./node_modules/.bin/eslint",
-    "check-lint": "lint [0-9]*.js",
     "lint-all": "./node_modules/.bin/eslint [0-9]*.js",
     "lint-fix-all": "./node_modules/.bin/eslint --fix [0-9]*.js",
-    "test": "./node_modules/mocha/bin/mocha --require babel-register --exit",
+    "test": "node ./node_modules/mocha/bin/mocha --require babel-register --exit",
     "dev": "nodemon --exec babel-node --presets babel-preset-env ./full_server/server.js ./database.csv"
   },
   "dependencies": {

@@ -26,9 +26,9 @@ class StudentsController {
         responseParts.push(StudentsController.formatFieldResponse(field, group));
       });
 
-      response.status(200).send(responseParts.join('\n'));
+      return responseParts.join('\n');
     } catch (err) {
-      StudentsController.handleError(response, err);
+      return StudentsController.handleError(response, err);
     }
   }
 
@@ -53,9 +53,9 @@ class StudentsController {
       }
 
       const responseText = `List: ${group.map((student) => student.firstname).join(', ')}`;
-      response.status(200).send(responseText);
+      return response.status(200).send(responseText);
     } catch (err) {
-      StudentsController.handleError(response, err);
+      return StudentsController.handleError(response, err);
     }
   }
 

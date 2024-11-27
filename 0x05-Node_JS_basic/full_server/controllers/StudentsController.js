@@ -26,7 +26,7 @@ class StudentsController {
         responseParts.push(StudentsController.formatFieldResponse(field, group));
       });
 
-      return responseParts.join('\n');
+      return response.status(200).send(responseParts.join('\n'));
     } catch (err) {
       return StudentsController.handleError(response, err);
     }
@@ -86,7 +86,7 @@ class StudentsController {
      * @param {Error} err The error to handle.
      */
   static handleError(response, err) {
-    response.status(500).send(err instanceof Error ? err.message : err.toString());
+    return response.status(500).send(err instanceof Error ? err.message : err.toString());
   }
 }
 

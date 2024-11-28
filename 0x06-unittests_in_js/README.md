@@ -302,9 +302,7 @@ You should see output in the console indicating whether all tests have passed or
 
 To deepen your understanding of testing in Node.js, here are some great resources:
 
-1
-
-. **Mocha Documentation**: [https://mochajs.org/](https://mochajs.org/)
+1 . **Mocha Documentation**: [https://mochajs.org/](https://mochajs.org/)
 2. **Chai Documentation**: [https://www.chaijs.com/](https://www.chaijs.com/)
 3. **Sinon Documentation**: [https://sinonjs.org/](https://sinonjs.org/)
 4. **Test-Driven Development (TDD)**: [https://www.agilealliance.org/glossary/tdd/](https://www.agilealliance.org/glossary/tdd/)

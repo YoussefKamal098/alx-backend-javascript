@@ -1,136 +1,228 @@
-# NodeJS Basics
-This project contains tasks for learning to the basics of NodeJS and Express framework.
+# Node.js Basics Project
+
+## Project Overview
+
+This project introduces you to core concepts and practical skills needed to work with Node.js and related technologies. You'll be building a simple Node.js application that involves creating an HTTP server, working with files, utilizing command-line arguments, using ES6 features, and setting up a development workflow with tools like Babel, Nodemon, ESLint, and Mocha for testing.
+
+### **Learning Objectives**
+By the end of this project, you'll be able to:
+
+- Run JavaScript using Node.js
+- Use Node.js modules for file handling and environment access
+- Create an HTTP server using Node.js and Express
+- Develop advanced routes with Express.js
+- Use ES6 features in Node.js using Babel
+- Develop more efficiently using Nodemon
+- Test your code with Jest and Mocha
+- Ensure code quality using ESLint
+
+---
 
 ## **Resources**
+Here are some resources to help you get started and dive deeper into the concepts used in this project:
 
-Read or watch the following materials to learn more about the concepts used in this project:
+- **Node JS Getting Started** - [Node.js Documentation](https://nodejs.org/en/docs/)
+- **Process API doc** - [Node.js Process API](https://nodejs.org/dist/latest-v16.x/docs/api/process.html)
+- **Child Process** - [Node.js Child Process](https://nodejs.org/dist/latest-v16.x/docs/api/child_process.html)
+- **Express Getting Started** - [Express Documentation](https://expressjs.com/en/starter/installing.html)
+- **Mocha Documentation** - [Mocha](https://mochajs.org/)
+- **Nodemon Documentation** - [Nodemon](https://nodemon.io/)
+- **ESLint Documentation** - [ESLint](https://eslint.org/docs/user-guide/getting-started)
 
-- **Node.js Getting Started**: [Official Node.js Documentation](https://nodejs.org/en/docs/guides/)
-- **Process API**: [Node.js Process API Documentation](https://nodejs.org/dist/latest-v14.x/docs/api/process.html)
-- **Child Process**: [Node.js Child Process Documentation](https://nodejs.org/dist/latest-v14.x/docs/api/child_process.html)
-- **Express Getting Started**: [Express.js Documentation](https://expressjs.com/en/starter/installing.html)
-- **Mocha Documentation**: [Mocha Testing Framework](https://mochajs.org/)
-- **Nodemon Documentation**: [Nodemon Documentation](https://nodemon.io/)
+---
 
-## **Learning Objectives**
+## **Project Setup**
 
-By the end of this project, you should be able to:
+1. **Clone the Repository** (or set up the project folder):
+   ```bash
+   git clone <repository-url>
+   cd <project-folder>
+   ```
 
-- Run JavaScript code using Node.js.
-- Use Node.js built-in modules.
-- Read files using Node.js' `fs` module.
-- Access command line arguments and environment variables using `process`.
-- Create a small HTTP server using Node.js' `http` module.
-- Create a small HTTP server using Express.js.
-- Create advanced routes with Express.js.
-- Use ES6 features in Node.js with Babel.
-- Use Nodemon to develop faster.
+2. **Install Dependencies**:
+   Run `npm install` to install all the required dependencies specified in `package.json`.
 
-## **Requirements**
+   ```bash
+   npm install
+   ```
 
-- **Allowed Editors**: vi, vim, emacs, Visual Studio Code.
-- **Tested on**: Ubuntu 18.04 LTS, Node.js version 12.x.x.
-- **File Extensions**: All JavaScript files should have the `.js` extension.
-- **Code Formatting**: Your code should follow ESLint guidelines and pass all tests.
-- **Tests**: Your code will be tested using Jest. To run tests, use the command `npm run test`.
-- **Full Test**: To verify the entire project, run `npm run full-test`.
+---
 
-## Tasks To Complete
+## **Files and Configuration**
 
-+ [x] 0. **Executing basic javascript with Node JS**<br/>[0-console.js](0-console.js) contains a module that exports a function named `displayMessage` that prints in `STDOUT` the string argument.
+### **1. `package.json`**
 
-+ [x] 1. **Using Process stdin**<br/>[1-stdin.js](1-stdin.js) contains a script that will be executed through the command line with the following requirements:
-  + It should display the message `Welcome to Holberton School, what is your name?` (followed by a new line).
-  + The user should be able to input their name on a new line.
-  + The program should display `Your name is: INPUT`.
-  + When the user ends the program, it should display `This important software is now closing` (followed by a new line).
+This is the project’s configuration file that includes dependencies, devDependencies, and scripts.
 
-+ [x] 2. **Reading a file synchronously with Node JS**<br/>[2-read_file.js](2-read_file.js) contains a module that exports a function `countStudents` with the following requirements:
-  + Create a function named `countStudents`. It should accept a path in argument.
-  + The script should attempt to read the database file synchronously.
-  + The database file has the same format as [database.csv](database.csv).
-  + If the database is not available, it should throw an error with the text `Cannot load the database`.
-  + If the database is available, it should log the following message to the console `Number of students: NUMBER_OF_STUDENTS`.
-  + It should log the number of students in each field, and the list with the following format: `Number of students in FIELD: 6. List: LIST_OF_FIRSTNAMES`.
-  + CSV file can contain empty lines (at the end) - and they are not a valid student!
+- **Dependencies**:
+  - `chai-http`: For making HTTP requests in tests.
+  - `express`: Web framework for building the HTTP server.
+- **DevDependencies**:
+  - `babel-cli`, `babel-preset-env`: Babel for using ES6 and beyond with Node.js.
+  - `nodemon`: Automatically restarts the server during development.
+  - `eslint`, `eslint-config-airbnb-base`: Code linter for maintaining code quality.
+  - `mocha`: Test framework for running tests.
+  - `chai`: Assertion library for tests.
+  - `sinon`: Mocking and spying utilities for tests.
 
-+ [x] 3. **Reading a file asynchronously with Node JS**<br/>[3-read_file_async.js](3-read_file_async.js) contains a module that exports a function `countStudents` with the following requirements:
-  + Create a function named `countStudents`. It should accept a path in argument (same as in [2-read_file.js](2-read_file.js)).
-  + The script should attempt to read the database file asynchronously.
-  + The database file has the same format as [database.csv](database.csv).
-  + The function should return a Promise.
-  + If the database is not available, it should throw an error with the text `Cannot load the database`.
-  + If the database is available, it should log the following message to the console `Number of students: NUMBER_OF_STUDENTS`.
-  + It should log the number of students in each field, and the list with the following format: `Number of students in FIELD: 6. List: LIST_OF_FIRSTNAMES`.
-  + CSV file can contain empty lines (at the end) - and they are not a valid student!
+**Key Scripts**:
+- `lint`: Runs ESLint to check code quality.
+- `check-lint`: Checks specific JavaScript files for linting errors.
+- `test`: Runs tests using Mocha and Babel.
+- `dev`: Starts the development server with Babel and Nodemon.
 
-+ [x] 4. **Create a small HTTP server using Node's HTTP module**<br/>[4-http.js](4-http.js) contains a script that creates and exports a small HTTP server using the `http` module with the following requirements:
-  + It should be assigned to the variable `app`, which must be exported.
-  + HTTP server should listen on port 1245.
-  + Displays `Hello Holberton School!` in the page body for any endpoint as plain text.
+### **2. `babel.config.js`**
 
-+ [x] 5. **Create a more complex HTTP server using Node's HTTP module**<br/>[5-http.js](5-http.js) contains a script that creates and exports a small HTTP server using the `http` module with the following requirements:
-  + It should be assigned to the variable `app`, which must be exported.
-  + HTTP server should listen on port 1245.
-  + It should return plain text.
-  + When the URL path is `/`, it should display `Hello Holberton School!` in the page body.
-  + When the URL path is `/students`, it should display `This is the list of our students` followed by the same content as the file [3-read_file_async.js](3-read_file_async.js) (with and without the database) - the name of the database must be passed as argument of the file.
-  + CSV file can contain empty lines (at the end) - and they are not a valid student!
+This configuration file for Babel tells it to use the `@babel/preset-env` preset, which allows you to use modern JavaScript (ES6 and beyond). It also ensures compatibility with the current version of Node.js.
 
-+ [x] 6. **Create a small HTTP server using Express**<br/>[6-http_express.js](6-http_express.js) contains a script that creates and exports a small HTTP server using the Express module with the following requirements:
-  + It should be assigned to the variable `app`, which must be exported.
-  + HTTP server should listen on port 1245.
-  + Displays `Hello Holberton School!` in the page body for the endpoint `/`.
+```javascript
+module.exports = {
+  presets: [
+    [
+      '@babel/preset-env',
+      {
+        targets: {
+          node: 'current', // Ensures compatibility with the current Node.js version
+        },
+      },
+    ],
+  ],
+};
+```
 
-+ [x] 7. **Create a more complex HTTP server using Express**<br/>[7-http_express.js](7-http_express.js) contains a script creates and exports a small HTTP server using the Express module with the following requirements:
-  + It should be assigned to the variable `app`, which must be exported.
-  + HTTP server should listen on port 1245.
-  + It should return plain text.
-  + When the URL path is `/`, it should display Hello Holberton School! in the page body.
-  + When the URL path is `/students`, it should display This is the list of our students followed by the same content as the file [3-read_file_async.js](3-read_file_async.js) (with and without the database) - the name of the database must be passed as argument of the file.
-  + CSV file can contain empty lines (at the end) - and they are not a valid student!
+### **3. `.eslintrc.js`**
 
-+ [x] 8. **Organize a complex HTTP server using Express**<br />Writing every part of a server within a single file is not sustainable. Create a full server in a directory named [`full_server`](full_server) with the requirements listed below.<br />Since you have used ES6 and Babel in the past projects, let's use `babel-node` to allow to use ES6 functions like `import` or `export`.
-  + **8.1 Organize the structure of the server**
-    + Create 2 directories within the [full_server](full_server) folder:
-      + [controllers](full_server/controllers/).
-      + [routes](full_server/routes/).
-    + Create a file [full_server/utils.js](full_server/utils.js) with a function named readDatabase that accepts a file path as an argument:
-      + It should read the database asynchronously.
-      + It should return a promise.
-      + When the file is not accessible, it should reject the promise with the error.
-      + When the file can be read, it should return an object of arrays of the firstname of students per field.
-  + **8.2 Write the App controller**<br />Inside the file [full_server/controllers/AppController.js](full_server/controllers/AppController.js):
-    + Create a class named `AppController`. Add a static method named `getHomepage`.
-    + The method accepts `request` and `response` as argument. It returns a 200 status and the message `Hello Holberton School!`.
-  + **8.3 Write the Students controller**<br />Inside the file [full_server/controllers/StudentsController.js](full_server/controllers/StudentsController.js), create a class named `StudentsController`. Add two static methods:
-    + The first one is `getAllStudents`:
-      + The method accepts `request` and `response` as argument.
-      + It should return a status 200.
-      + It calls the function `readDatabase` from the [utils](full_server/utils.js) file, and display in the page:
-        + First line: `This is the list of our students`.
-        + And for each field (order by alphabetic order case insensitive), a line that displays the number of students in the field, and the list of first names (ordered by appearance in the database file) with the following format: `Number of students in FIELD: 6. List: LIST_OF_FIRSTNAMES`.
-      + If the database is not available, it should return a status 500 and the error message `Cannot load the database`.
-    + The second one is `getAllStudentsByMajor`:
-      + The method accepts `request` and `response` as argument.
-      + It should return a status 200.
-      + It uses a parameter that the user can pass to the browser `major`. The `major` can only be `CS` or `SWE`. If the user is passing another parameter, the server should return a 500 and the error `Major parameter must be CS or SWE`.
-      + It calls the function `readDatabase` from the [utils](full_server/utils.js) file, and displays in the page the list of first names for the students (ordered by appearance in the database file) in the specified field `List: LIST_OF_FIRSTNAMES_IN_THE_FIELD`.
-      + If the database is not available, it should return a status 500 and the error message `Cannot load the database`.
-  + **8.4 Write the routes**<br />Inside the file [full_server/routes/index.js](full_server/routes/index.js):
-    + Link the route `/` to the `AppController`.
-    + Link the route `/students` and `/students/:major` to the `StudentsController`.
-  + **8.5 Write the server reusing everything you created**<br />Inside the file named [full_server/server.js](full_server/server.js), create a small Express server:
-    + It should use the routes defined in [full_server/routes/index.js](full_server/routes/index.js).
-    + It should use the port `1245`.
-  + **8.6 Update `package.json` (if you are running it from inside the folder `full_server`)**
-    + If you are starting node from inside of the folder [full_server](full_server/), you will have to update the command `dev` by: `nodemon --exec babel-node --presets babel-preset-env ./server.js ../database.csv`.
-  + **Warning:**
-    + Don't forget to export your express app at the end of [server.js](full_server/server.js) (`export default app;`).
-    + The database filename is passed as argument of the [server.js](full_server/server.js) BUT, for the purpose of testing, you should retrieve this filename at the execution or when it's needed (when `getAllStudents` or `getAllStudentsByMajor` are called for example).
-  + If you want to add test to validate your integration, you will need to add this file: [.babelrc](.babelrc).
-    ```js
-    {
-        "presets": [["env", {"exclude": ["transform-regenerator"]}]]
-    }
-    ```
+This file configures ESLint for code linting and maintaining code style.
+
+- **Environment Setup**: Configures for browser (false), ES6 (true), and Jest (true) environments.
+- **Airbnb Base Style**: Uses Airbnb's JavaScript style guide as the base configuration.
+- **Jest Plugin**: Ensures compatibility with Jest testing.
+- **Custom Rules**:
+  - `max-classes-per-file`: Disabled.
+  - `no-console`: Allowed.
+  - `no-shadow`: Disabled.
+
+```javascript
+module.exports = {
+  env: {
+    browser: false,
+    es6: true,
+    jest: true,
+  },
+  extends: [
+    'airbnb-base',
+    'plugin:jest/all',
+  ],
+  plugins: ['jest'],
+  rules: {
+    'max-classes-per-file': 'off',
+    'no-underscore-dangle': 'off',
+    'no-console': 'off',
+    'no-shadow': 'off',
+    'no-restricted-syntax': [
+      'error',
+      'LabeledStatement',
+      'WithStatement',
+    ],
+  },
+};
+```
+
+---
+
+## **How to Run the Project**
+
+### **1. Starting the Development Server**:
+Use the following command to start the server with live reloading (via Nodemon) and Babel for ES6+ compatibility:
+
+```bash
+npm run dev
+```
+
+This will start the `server.js` file and use the `database.csv` file. It will automatically restart the server when any changes are made to the files.
+
+### **2. Running Tests**:
+The project uses Mocha for testing. To run the tests, simply use the following command:
+
+```bash
+npm run test
+```
+
+This will run all the tests defined in the project.
+
+To check for linting errors (code style violations), use:
+
+```bash
+npm run lint
+```
+
+### **3. Full Testing (Tests + Lint)**:
+To run the full test suite, including linting and tests, use:
+
+```bash
+npm run full-test
+```
+
+---
+
+## **How to Structure the Project**
+
+- **`server.js`**: Contains your Express server setup and routes.
+- **`database.csv`**: CSV file with sample data (you'll read from this file in your project).
+- **Test files**: Mocha tests for verifying the server and functions (e.g., `test/` directory).
+- **Configuration files**: `babel.config.js`, `.eslintrc.js`, `package.json` for project setup.
+
+### **Example Express Server (`server.js`)**:
+
+```javascript
+const express = require('express');
+const app = express();
+
+// Example route
+app.get('/', (req, res) => {
+  res.send('Hello World');
+});
+
+// Server listening on port 3000
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
+```
+
+---
+
+## **Testing with Mocha and Chai**
+
+The tests in this project use Mocha for structuring and running tests, and Chai for assertions. Mocha tests are structured with the following lifecycle methods:
+
+- **`before()`**: Runs once before all tests in the file.
+- **`beforeEach()`**: Runs before each individual test.
+- **`after()`**: Runs once after all tests in the file.
+- **`afterEach()`**: Runs after each individual test.
+
+### **Example Mocha Test**:
+
+```javascript
+const chai = require('chai');
+const expect = chai.expect;
+
+describe('GET /', () => {
+  it('should return Hello World', (done) => {
+    // Simulating an HTTP request
+    chai.request(app)
+      .get('/')
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.text).to.equal('Hello World');
+        done();
+      });
+  });
+});
+```
+
+---
+
+## **Conclusion**
+
+This project sets you up with the basic foundations of Node.js, Express, testing, and a modern JavaScript development workflow. You'll use tools like Babel to write ES6 code and Nodemon for automatic server restarts during development. With Mocha, Chai, and ESLint, you'll be able to write and run tests efficiently while keeping your code clean and maintainable.
+
